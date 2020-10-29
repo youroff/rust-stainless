@@ -3,6 +3,26 @@ pub use stainless_macros::*;
 
 use std::marker::PhantomData;
 
+/// This type is a placeholder for some methods with the same names as those in
+/// Set<T>. It shows that the std item lookup can't check whether it extracts
+/// the methods on the correct implementation. This would be needed for
+/// extracting `Box::new` though.
+pub struct TestType;
+
+impl TestType {
+  pub fn empty() -> Self {
+    unimplemented!()
+  }
+  pub fn singleton<T>(_t: T) -> Self {
+    unimplemented!()
+  }
+  pub fn add<T>(self, _t: T) -> TestType {
+    unimplemented!()
+  }
+}
+
+/// Stainless' set type, useful for proofs. There are no runtime implementations
+/// for the methods, though.
 #[derive(Copy, Clone, PartialEq)]
 pub struct Set<T> {
   phantom: PhantomData<T>,

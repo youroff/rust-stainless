@@ -180,7 +180,7 @@ impl StdItems {
         .def_path(def_id)
         .data
         .last()
-        .map(|data| data.data.as_symbol())
+        .map(|last| last.data.as_symbol())
       {
         if let Some(item) = items.remove(name_sym) {
           self.item_to_def[item.index()] = def_id;
